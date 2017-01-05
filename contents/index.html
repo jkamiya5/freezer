@@ -7,7 +7,8 @@
     <meta http-equiv="Content-Style-Type" content="text/css">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
     <title>冷蔵庫ランキング</title>
-    <link rel="stylesheet" href="../lib/datatable/css/datatable.css" type="text/css"/>
+    <link rel="stylesheet" href="../lib/datatable/css/datatable.css" type="text/css" />
+    <link rel="stylesheet" href="../css/myCss.cs" type="text/css" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="../lib/jquery.xdomainajax.js"></script>
     <script type="text/javascript" src="../lib/jquery.tablesorter.js"></script>
@@ -15,26 +16,30 @@
 </head>
 
 <body>
+    <div class="demo2">
+        <div class="sample02">
+            <input type="button" id="csvBtn" value="CSVダウンロード">
+        </div>
 
-    <!-- コンテナ開始 -->
-    <div id="hoge">
-        <table border=1 id="myTable" class="tablesorter">
-            <thead>
-                <tr>
-                    <th>順位</th>
-                    <th>メーカー</th>
-                    <th>製品名</th>
-                    <th>価格</th>
-                    <th>エコ評価</th>
-                    <th>容積</th>
-                    <th>発売日</th>
-                </tr>
-            </thead>
-        </table>
-        <div class="paging"></div>
+        <!-- コンテナ開始 -->
+        <div id="hoge">
+            <table border=1 id="myTable" class="tablesorter">
+                <thead>
+                    <tr>
+                        <th>順位</th>
+                        <th>メーカー</th>
+                        <th>製品名</th>
+                        <th>価格</th>
+                        <th>省エネ評価</th>
+                        <th>容積（L）</th>
+                        <th>発売日</th>
+                    </tr>
+                </thead>
+            </table>
+            <div class="paging"></div>
+        </div>
     </div>
     <!-- コンテナ終了 -->
-
 </body>
 
 </html>
