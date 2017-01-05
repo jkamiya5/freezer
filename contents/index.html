@@ -7,17 +7,19 @@
     <meta http-equiv="Content-Style-Type" content="text/css">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
     <title>冷蔵庫ランキング</title>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="../lib/datatable/css/datatable.css" type="text/css"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="../lib/jquery.xdomainajax.js"></script>
+    <script type="text/javascript" charset="utf8" src="../lib/datatable/js/datatable.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="../lib/datatable/js/datatable.jquery.min.js"></script>
     <script type="text/javascript" src="../js/mainProc.js"></script>
-    <script type="text/javascript" src="../lib/jquery.tablesorter.js"></script>
 </head>
 
 <body>
 
     <!-- コンテナ開始 -->
     <div id="hoge">
-        <table border=1 id="myTable" class="tablesorter">
+        <table border=1 id="myTable" class="display">
             <thead>
                 <tr>
                     <th>順位</th>
@@ -30,6 +32,7 @@
                 </tr>
             </thead>
         </table>
+        <div class="paging"></div>
     </div>
     <!-- コンテナ終了 -->
 

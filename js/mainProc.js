@@ -94,5 +94,5 @@ function readPage(tbody, data) {
 }
 
 $(window).load(function() {
-    $("#myTable").tablesorter();
+    $('#myTable').dataTable();
 });
