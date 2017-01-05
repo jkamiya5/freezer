@@ -1,25 +1,11 @@
 $(function() {
-
-    var table = $('<table border=1 id="myTable" class="tablesorter">');
-    var th = $('<tr>')
-        .append('<th>順位</th>')
-        .append('<th>メーカー</th>')
-        .append('<th>製品名</th>')
-        .append('<th>価格</th>')
-        .append('<th>エコ評価</th>')
-        .append('<th>容積</th>')
-        .append('<th>発売日</th>');
-
-    table.append($('<thead>').append(th));
     var tbody = $('<tbody>');
-    var index = [1];
     for (var p = 1; p < 100; p++) {
         var uri = 'http://kakaku.com/kaden/freezer/ranking_2120/?page=' + p;
         $.get(uri, function(data) {
-            readPage(tbody, data, index);
-            table.append(tbody);
+            readPage(tbody, data);
         });
-        $("#hoge").append(table);
+        $("#myTable").append(tbody);
     }
 });
 
@@ -48,18 +34,19 @@ function getZeroPadding(number, decimals) {
     return (Math.pow(10, decimals) + number).slice(decimals * -1);
 }
 
-function readPage(tbody, data, index) {
+function readPage(tbody, data) {
 
-    var text = data.responseText;
-    var domObject = $(text);
+    var domObject = $(data.responseText);
     var rkgBoxName = domObject.find('.rkgBoxName');
     var price = domObject.find('.price');
     var note = domObject.find('.rowDetail');
     var releaseDate = domObject.find('.rkgDate');
+    var rankList = domObject.find('.rkgBoxNo').find('.num');
     var info = [];
 
     for (var i = 0; i < rkgBoxName.length; i++) {
 
+        var rank = rankList[i].innerText;
         var energySave = note[i].innerText.match(/★+/);
         if (energySave == null) {
             energySave = "";
@@ -85,7 +72,8 @@ function readPage(tbody, data, index) {
             'price': price[i],
             'energySave': energySave,
             'size': size,
-            'releaseDate': date
+            'releaseDate': date,
+            'rank': rank
         };
         info.push(obj);
     }
@@ -93,7 +81,7 @@ function readPage(tbody, data, index) {
     for (var v in info) {
         var makerName = getMakerName(info[v].rkgBoxName);
         var td = $('<tr />');
-        td.append('<td>' + index + '</td>');
+        td.append('<td>' + info[v].rank + '</td>');
         td.append('<td>' + makerName + '</td>');
         td.append('<td>' + info[v].rkgBoxName.innerText.replace(makerName, "") + '</td>');
         var pVal = info[v].price.innerText.replace("¥", "").replace(",", "");
@@ -102,10 +90,8 @@ function readPage(tbody, data, index) {
         td.append('<td>' + info[v].size + '</td>');
         td.append('<td>' + info[v].releaseDate + '</td>');
         tbody.append(td);
-        index[0]++;
     }
 }
-
 
 $(window).load(function() {
     $("#myTable").tablesorter();
