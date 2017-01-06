@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <title>冷蔵庫ランキング</title>
+    <link rel="stylesheet" href="../lib/datatable/css/datatable.css" type="text/css" />
+    <link rel="stylesheet" href="../css/myCss.cs" type="text/css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/jquery.xdomainajax.js"></script>
+    <script type="text/javascript" src="../lib/jquery.tablesorter.js"></script>
+    <script type="text/javascript" src="../js/test.js"></script>
+</head>
+
+<body>
+    <div class="demo2">
+        <div class="w600 title">冷蔵庫ランキング</div>
+        <div class="sample05 w600">
+            <div class="sample04 w600 right">
+                <input type="button" id="csvBtn" value="CSVダウンロード">
+            </div>
+            <!-- コンテナ開始 -->
+            <div id="hoge" class="sample04 w600 right">
+                <table border=1 id="myTable" class="tablesorter">
+                    <thead>
+                        <tr>
+                            <th>順位</th>
+                            <th>メーカー</th>
+                            <th>製品名</th>
+                            <th>価格</th>
+                            <th>省エネ評価</th>
+                            <th>容積（L）</th>
+                            <th>発売日</th>
+                            <th>製品ページ</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>1</td>
+                        <td>東芝</td>
+                        <td>冷蔵庫AAA</td>
+                        <td>10000</td>
+                        <td>★</td>
+                        <td>100</td>
+                        <td>2015/12/12</td>
+                        <td><a href="http://東芝.冷蔵庫AAA.co.jp">製品ページ</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>SHARP</td>
+                        <td>冷蔵庫BBB</td>
+                        <td>20000</td>
+                        <td>★★</td>
+                        <td>200</td>
+                        <td>2011/10/1</td>
+                        <td><a href="http://SHARP.冷蔵庫BBB.co.jp">製品ページ</a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Panasonic</td>
+                        <td>冷蔵庫CCC</td>
+                        <td>30000</td>
+                        <td>★★★</td>
+                        <td>300</td>
+                        <td>2013/4/1</td>
+                        <td><a href="http://Panasonic.冷蔵庫CCC.co.jp">製品ページ</a></td>
+                    </tr>
+                </table>
+                <div class="paging"></div>
+            </div>
+        </div>
+        <ul>
+            <li>白くま</li>
+            <li>ライオン</li>
+            <li>クロヒョウ</li>
+            <li>チンパンジー</li>
+            <li>山猫</li>
+        </ul>
+    </div>
+    <!-- コンテナ終了 -->
+</body>
+
+</html>

@@ -26,14 +26,6 @@ function getMakerName(val) {
     }
 }
 
-function getZeroPadding(number, decimals) {
-    var number = String(number);
-    if (number.length > decimals) {
-        return number;
-    }
-    return (Math.pow(10, decimals) + number).slice(decimals * -1);
-}
-
 function readPage(tbody, data) {
 
     var domObject = $(data.responseText);
