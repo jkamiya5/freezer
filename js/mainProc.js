@@ -59,14 +59,13 @@ function readPage(tbody, data) {
             date = date + "1";
         }
 
-        var obj = {
-            'rkgBoxName': rkgBoxName[i],
-            'price': price[i],
-            'energySave': energySave,
-            'size': size,
-            'releaseDate': date,
-            'rank': rank
-        };
+        var obj = {};
+        obj.rkgBoxName = rkgBoxName[i];
+        obj.price = price[i];
+        obj.energySave = energySave;
+        obj.size = size;
+        obj.releaseDate = date;
+        obj.rank = rank;
         info.push(obj);
     }
 
