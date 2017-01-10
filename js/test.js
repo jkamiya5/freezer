@@ -22,14 +22,8 @@ function popUpSelectDialog(type) {
                 getSelectedValue(cbxId);
                 $(this).dialog("close");
             },
-        },
-        open: function () {
-
-            //initAction(cbxId, this);
-
         }
     });
-    initAction(cbxId, $("#show_dialog").html());
 }
 
 function getSelectedValue(cbxId) {
@@ -80,7 +74,7 @@ function filterAction(target, index) {
     var hiddenVal = [];
     $('td:eq(' + index + ')', 'tbody tr').each(function () {
         if (isContains(selected, this) && $(this).parent().is(':visible')) {
-        //if (isContains(selected, this)) {
+            //if (isContains(selected, this)) {
             $(this).parent().show();
             hiddenVal.push($(this).text());
         } else {
@@ -104,3 +98,10 @@ function initAction(cbxId, myObj) {
     });
 }
 
+
+
+$("#show_dialog").dialog({
+    drag: function(event) {
+        initAction(cbxId, $("#show_dialog"));
+    }
+});
