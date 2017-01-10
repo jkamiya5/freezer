@@ -1,7 +1,4 @@
-$(window).load(function () {
-    var val = $("#div:first").value;
-});
-
+var cbxId = '';
 
 function popUpSelectDialog(type) {
 
@@ -9,34 +6,35 @@ function popUpSelectDialog(type) {
     var html = $('<div>').load('../contents/dialog/' + type + 'Dialog.html');
     $("#show_dialog").html(html);
 
-    var makerName = "";
+    var titleval = "";
     switch (type) {
-        case "maker": makerName = "メーカー"; break;
-        case "energySave": makerName = "省エネ評価"; break;
+        case "maker": titleval = "メーカー"; cbxId = "makerCbx"; break;
+        case "energySave": titleval = "省エネ評価"; cbxId = "energySaveCbx"; break;
         default: ; break;
     }
 
     // ダイアログを作成
     $("#show_dialog").dialog({
-        title: makerName,
+        title: titleval,
         modal: true,
         buttons: {
             "OK": function () {
-                getSelectedValue(type);
+                getSelectedValue(cbxId);
                 $(this).dialog("close");
             },
+        },
+        open: function () {
+
+            //initAction(cbxId, this);
+
         }
     });
+    initAction(cbxId, $("#show_dialog").html());
 }
 
-function getSelectedValue(type) {
+function getSelectedValue(cbxId) {
 
-    var cbxId = "";
-    switch (type) {
-        case "maker": cbxId = "makerCbx"; break;
-        case "energySave": cbxId = "energySaveCbx"; break;
-        default: ; break;
-    }
+
     var item = {};
     var items = [];
     item.name = 'makerCbx';
@@ -69,19 +67,20 @@ function isContains(seleted, target) {
 function filterAction(target, index) {
 
     var obj = "[name='" + target + "']:checked";
-    var seleted = [];
+    var selected = [];
 
     $(obj).each(function () {
-        seleted.push($(this).parent('li').text());
+        selected.push($(this).parent('li').text());
     });
 
-    if (seleted.length == 0) {
+    if (selected.length == 0) {
         return;
     }
 
     var hiddenVal = [];
     $('td:eq(' + index + ')', 'tbody tr').each(function () {
-        if (isContains(seleted, this) && $(this).parent().is(':visible')) {
+        if (isContains(selected, this) && $(this).parent().is(':visible')) {
+        //if (isContains(selected, this)) {
             $(this).parent().show();
             hiddenVal.push($(this).text());
         } else {
@@ -91,3 +90,17 @@ function filterAction(target, index) {
     var hidden = "[name='" + target + "']:hidden";
     $(hidden).val(hiddenVal);
 }
+
+
+function initAction(cbxId, myObj) {
+
+    var hidden = "[name='" + cbxId + "']:hidden";
+    var obj = "[name='" + cbxId + "']";
+    if ($(hidden).length == 0 || $(hidden).val() == "") {
+        return;
+    }
+    $.each($(hidden).val().split(','), function (index, val) {
+        $("li:contains(" + val + ") > [name='makerCbx']", myObj).prop("checked", true);
+    });
+}
+
