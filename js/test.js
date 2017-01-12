@@ -2,10 +2,6 @@ var cbxId = '';
 
 function popUpSelectDialog(type) {
 
-    // ダイアログのメッセージを設定
-    var html = $('<div>').load('../contents/dialog/' + type + 'Dialog.html');
-    $("#show_dialog").html(html);
-
     var titleval = "";
     switch (type) {
         case "maker": titleval = "メーカー"; cbxId = "makerCbx"; break;
@@ -22,6 +18,9 @@ function popUpSelectDialog(type) {
                 getSelectedValue(cbxId);
                 $(this).dialog("close");
             },
+        },
+        open: function () {
+            initAction(cbxId, this, type);
         }
     });
 }
@@ -86,22 +85,19 @@ function filterAction(target, index) {
 }
 
 
-function initAction(cbxId, myObj) {
+function initAction(cbxId, myObj, type) {
 
-    var hidden = "[name='" + cbxId + "']:hidden";
-    var obj = "[name='" + cbxId + "']";
-    if ($(hidden).length == 0 || $(hidden).val() == "") {
+    // ダイアログのメッセージを設定
+    if ($("#show_dialog").find('[name=' + type + 'Cbx]').length != 0) {
         return;
     }
-    $.each($(hidden).val().split(','), function (index, val) {
-        $("li:contains(" + val + ") > [name='makerCbx']", myObj).prop("checked", true);
-    });
+    var html = $('<div>').load('../contents/dialog/' + type + 'Dialog.html');
+    $("#show_dialog").html(html);
 }
 
 
-
-$("#show_dialog").dialog({
-    drag: function(event) {
-        initAction(cbxId, $("#show_dialog"));
-    }
+$(function () {
+    $('td:contains(東芝)').click(function () {
+        $('<p>Hello World!!!</p>').appendTo('body');
+    });
 });

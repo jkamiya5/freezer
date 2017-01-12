@@ -1,8 +1,8 @@
-$(function() {
+$(function () {
     var tbody = $('<tbody>');
     for (var p = 1; p < 100; p++) {
         var uri = 'http://kakaku.com/kaden/freezer/ranking_2120/?page=' + p;
-        $.get(uri, function(data) {
+        $.get(uri, function (data) {
             readPage(tbody, data);
         });
         $("#myTable").append(tbody);
@@ -84,6 +84,6 @@ function readPage(tbody, data) {
     }
 }
 
-$(window).load(function() {
+$(window).load(function () {
     $("#myTable").tablesorter();
 });
